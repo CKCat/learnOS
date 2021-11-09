@@ -1,0 +1,51 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/ckcat/Code/learnOS/lesson03/Cosmos'
+ 
+cd ./build; rm -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh
+ 
+cd ./exckrnl; rm -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh
+ 
+cd ./release/; rm -f *.o *.bin *.i *.krnl *.s *.eki *.map *.lib *.btoj *.elf *.vdi *vmdk *.lds *.mk *.mki krnlobjs.mh
+ 
+echo '清理全部已构建文件... ^_^'
+ 
+echo '*********正在开始编译构建系统*************'
+ 
+make -f ./Makefile.x86
+ 
+make[1]: Entering directory '/home/ckcat/Code/learnOS/lesson03/Cosmos'
+ 
+cd ./initldr/ && make
+ 
+make[2]: Entering directory '/home/ckcat/Code/learnOS/lesson03/Cosmos/initldr'
+ 
+cd ./build; rm -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *vmdk *.eki *.elf
+ 
+echo '清理全部已构建文件... ^_^'
+ 
+echo '*********正在开始编译构建系统*************'
+ 
+make -C ./build -f initldr.mk
+ 
+make[3]: Entering directory '/home/ckcat/Code/learnOS/lesson03/Cosmos/initldr/build'
+nasm -I ../include/ -f elf -o ldrkrl32.o ../ldrkrl/ldrkrl32.asm
+echo 'AS -[M] 正在构建...' ../ldrkrl/ldrkrl32.asm
+ 
+gcc -I ../include/ -c -Os -std=c99 -m32 -Wall -Wshadow -W -Wconversion -Wno-sign-conversion  -fno-stack-protector -fomit-frame-pointer -fno-builtin -fno-common  -fno-ident -ffreestanding  -fno-stack-protector -fomit-frame-pointer -Wno-unused-parameter -Wunused-variable -o chkcpmm.o ../ldrkrl/chkcpmm.c
+echo 'CC -[M] 正在构建... '../ldrkrl/chkcpmm.c  
+make[3]: Leaving directory '/home/ckcat/Code/learnOS/lesson03/Cosmos/initldr/build'
+ 
+make -C ./build -f ldrlink.mk
+ 
+make[3]: Entering directory '/home/ckcat/Code/learnOS/lesson03/Cosmos/initldr/build'
+./lmoskrlimg -m k -lhf initldrimh.bin -o Cosmos.eki -f initldrkrl.bin initldrsve.bin
+make[3]: Leaving directory '/home/ckcat/Code/learnOS/lesson03/Cosmos/initldr/build'
+ 
+echo '恭喜我，系统编译构建完成！ ^_^'
+make[2]: Leaving directory '/home/ckcat/Code/learnOS/lesson03/Cosmos/initldr'
+ 
+echo '恭喜我，系统编译构建完成！ ^_^'
+make[1]: Leaving directory '/home/ckcat/Code/learnOS/lesson03/Cosmos'
+echo '恭喜我，系统编译构建完成！ ^_^'
+make: Leaving directory '/home/ckcat/Code/learnOS/lesson03/Cosmos'
+ 

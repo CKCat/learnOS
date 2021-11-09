@@ -1,0 +1,1260 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.1
+ 
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2014 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue Nov  2 07:29:43 2021
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 2
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/ckcat/Code/learnOS/lesson03/Cosmos/initldr
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 13)
+RM = rm
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 9:51068
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'Makefile', line 11)
+CD = cd
+# makefile (from 'Makefile', line 12)
+DD = dd
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@F = $(notdir $@)
+# makefile (from 'Makefile', line 10)
+CP = cp
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# makefile (from 'Makefile', line 18)
+INITLDRLINKMFLGS = -C $(BUILD_PATH) -f ldrlink.mk
+# makefile (from 'Makefile', line 19)
+DSTPATH = ../exckrnl
+# environment
+USERNAME = ckcat
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# makefile (from 'Makefile', line 20)
+RELEDSTPATH = ../release
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=62538f96995e77fc88f16a4161814345
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+_ = /usr/share/code/code
+# environment
+MANAGERPID = 1475
+# environment
+CLUTTER_IM_MODULE = xim
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-db5e2017-a354-4e0c-a5d3-ee039f94a69e.sock
+# environment
+VSCODE_CWD = /home/ckcat
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+SESSION_MANAGER = local/ubuntu:@/tmp/.ICE-unix/1505,unix/ubuntu:/tmp/.ICE-unix/1505
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+TEXTDOMAIN = im-config
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e&iid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e&sid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e","uploadToServer":true}
+# environment
+INVOCATION_ID = 2f9bf39d7d8b4835a8fd2228908103a1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6898
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+GTK_IM_MODULE = ibus
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/ckcat/Code/learnOS/lesson03/Cosmos/initldr
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 1600
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/ckcat
+# environment
+VSCODE_CODE_CACHE_PATH = /home/ckcat/.config/Code/CachedData/6cba118ac49a1b88332f312a8f67186f7f3c1643
+# environment
+LOGNAME = ckcat
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+ZSH = /home/ckcat/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+MAKE_VERSION := 4.1
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile', line 8)
+MKDIR = mkdir
+# environment
+XDG_VTNR = 2
+# makefile (from 'Makefile', line 17)
+INITLDRMFLGS = -C $(BUILD_PATH) -f initldr.mk
+ 
+# environment
+MAKELEVEL := 2
+# makefile (from 'Makefile', line 15)
+BUILD_PATH = ./build
+# makefile (from 'Makefile', line 16)
+MAKE = make
+# environment
+QT_IM_MODULE = ibus
+# makefile (from 'Makefile', line 9)
+RMDIR = rmdir
+# environment
+SHLVL = 0
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+XDG_SESSION_ID = 2
+# environment
+USER = ckcat
+# makefile
+.DEFAULT_GOAL := build
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := make
+# environment
+OLDPWD = /home/ckcat/Code/learnOS/lesson03/Cosmos
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-69879c7f-1.61.2-main.sock
+# makefile
+MAKEFLAGS = pqrRs
+# environment
+MFLAGS = -pqrRs
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/ckcat/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+TEXTDOMAINDIR = /usr/share/locale/
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+DBUS_STARTER_BUS_TYPE = session
+# environment
+QT4_IM_MODULE = xim
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+VSCODE_PID = 6898
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=62538f96995e77fc88f16a4161814345
+# variable set hash-table stats:
+# Load=118/1024=12%, Rehash=0, Collisions=19/153=12%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2049, inode 1058451): 6 files, no impossibilities.
+
+# 6 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+all:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 27):
+	$(MAKE) $(INITLDRMFLGS)
+	$(MAKE) $(INITLDRLINKMFLGS)
+	@echo '恭喜我，系统编译构建完成！ ^_^'
+
+.PHONY: build print clean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+print:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 35):
+	@echo '*********正在开始编译构建系统*************'
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-10-18 14:57:18
+#  File has been updated.
+#  Successfully updated.
+
+build: clean print all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := clean
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/14=7%
+#  recipe to execute (from 'Makefile', line 31):
+ 
+	$(CD) $(BUILD_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *vmdk *.eki *.elf
+	@echo '清理全部已构建文件... ^_^'
+
+# files hash-table stats:
+# Load=8/1024=1%, Rehash=0, Collisions=0/31=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 14 / storage = 109 B / avg = 7 B
+# current buf: size = 8162 B / used = 109 B / count = 14 / avg = 7 B
+
+# strcache performance: lookups = 31 / hit rate = 54%
+# hash-table stats:
+# Load=14/8192=0%, Rehash=0, Collisions=1/31=3%
+# Finished Make data base on Tue Nov  2 07:29:43 2021
+
+ 
+# GNU Make 4.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2014 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue Nov  2 07:29:43 2021
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/ckcat/Code/learnOS/lesson03/Cosmos
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile.x86', line 13)
+RM = rm
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 9:51068
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'Makefile.x86', line 11)
+CD = cd
+# makefile (from 'Makefile.x86', line 12)
+DD = dd
+# makefile (from 'Makefile.x86', line 1)
+MAKEFILE_LIST :=  Makefile.x86
+# automatic
+@F = $(notdir $@)
+# makefile (from 'Makefile.x86', line 10)
+CP = cp
+# environment
+IM_CONFIG_PHASE = 2
+# environment
+USERNAME = ckcat
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=62538f96995e77fc88f16a4161814345
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+_ = /usr/share/code/code
+# environment
+MANAGERPID = 1475
+# environment
+CLUTTER_IM_MODULE = xim
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-db5e2017-a354-4e0c-a5d3-ee039f94a69e.sock
+# environment
+VSCODE_CWD = /home/ckcat
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+SESSION_MANAGER = local/ubuntu:@/tmp/.ICE-unix/1505,unix/ubuntu:/tmp/.ICE-unix/1505
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+TEXTDOMAIN = im-config
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e&iid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e&sid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e","uploadToServer":true}
+# environment
+INVOCATION_ID = 2f9bf39d7d8b4835a8fd2228908103a1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6898
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+GTK_IM_MODULE = ibus
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/ckcat/Code/learnOS/lesson03/Cosmos
+# makefile (from 'Makefile.x86', line 17)
+LMINITLDR_PATH = ./initldr/
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 1600
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/ckcat
+# environment
+VSCODE_CODE_CACHE_PATH = /home/ckcat/.config/Code/CachedData/6cba118ac49a1b88332f312a8f67186f7f3c1643
+# environment
+LOGNAME = ckcat
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+ZSH = /home/ckcat/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+MAKE_VERSION := 4.1
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile.x86', line 8)
+MKDIR = mkdir
+# environment
+XDG_VTNR = 2
+# environment
+MAKELEVEL := 1
+# makefile (from 'Makefile.x86', line 16)
+BUILD_PATH = ./build/
+# makefile (from 'Makefile.x86', line 14)
+MAKE = make
+# environment
+QT_IM_MODULE = ibus
+# makefile (from 'Makefile.x86', line 9)
+RMDIR = rmdir
+# environment
+SHLVL = 0
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+XDG_SESSION_ID = 2
+# environment
+USER = ckcat
+# makefile
+.DEFAULT_GOAL := build
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := make
+# environment
+OLDPWD = /home/ckcat
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-69879c7f-1.61.2-main.sock
+# makefile
+MAKEFLAGS = pqrRs
+# environment
+MFLAGS = -pqrRs
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/ckcat/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+TEXTDOMAINDIR = /usr/share/locale/
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+DBUS_STARTER_BUS_TYPE = session
+# environment
+QT4_IM_MODULE = xim
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# default
+.RECIPEPREFIX := 
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# environment
+LANG = C
+# environment
+VSCODE_PID = 6898
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=62538f96995e77fc88f16a4161814345
+# variable set hash-table stats:
+# Load=115/1024=11%, Rehash=0, Collisions=16/150=11%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+
+# No files, no impossibilities in 0 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+all:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  Last modified 2514-05-29 17:53:03.107374182
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+ 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/14=14%
+#  recipe to execute (from 'Makefile.x86', line 22):
+	$(CD) $(LMINITLDR_PATH) && $(MAKE)
+	@echo '恭喜我，系统编译构建完成！ ^_^'
+
+# Not a target:
+Makefile.x86:
+#  Implicit rule search has been done.
+#  Last modified 2021-10-18 14:57:18
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build: all
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=5/1024=0%, Rehash=0, Collisions=0/20=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 7 / storage = 74 B / avg = 10 B
+# current buf: size = 8162 B / used = 74 B / count = 7 / avg = 10 B
+
+# strcache performance: lookups = 13 / hit rate = 46%
+# hash-table stats:
+# Load=7/8192=0%, Rehash=0, Collisions=0/13=0%
+# Finished Make data base on Tue Nov  2 07:29:43 2021
+
+ 
+# GNU Make 4.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2014 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Tue Nov  2 07:29:43 2021
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 39)
+INITLDR_BUILD_PATH = ./initldr/build/
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 2
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/ckcat/Code/learnOS/lesson03/Cosmos
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 13)
+RM = rm
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'Makefile', line 17)
+IMGTOVDI = qemu-img convert -f raw -O vdi
+# environment
+JOURNAL_STREAM = 9:51068
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'Makefile', line 11)
+CD = cd
+# makefile (from 'Makefile', line 12)
+DD = dd
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@F = $(notdir $@)
+# makefile (from 'Makefile', line 10)
+CP = cp
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# makefile (from 'Makefile', line 37)
+DSTPATH = ../exckrnl
+# environment
+USERNAME = ckcat
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# makefile (from 'Makefile', line 38)
+RELEDSTPATH = ../release
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=62538f96995e77fc88f16a4161814345
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 48)
+INITLDRSVE = initldrsve.bin
+# environment
+_ = /usr/share/code/code
+# makefile (from 'Makefile', line 50)
+CPLILDRSRC = $(INITLDR_BUILD_PATH)$(INITLDRSVE) $(INITLDR_BUILD_PATH)$(INITLDRKRL) $(INITLDR_BUILD_PATH)$(INITLDRIMH)
+# makefile (from 'Makefile', line 14)
+LKIMG = ./lmoskrlimg -m k
+# environment
+MANAGERPID = 1475
+# environment
+CLUTTER_IM_MODULE = xim
+ 
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-db5e2017-a354-4e0c-a5d3-ee039f94a69e.sock
+# environment
+VSCODE_CWD = /home/ckcat
+# makefile (from 'Makefile', line 44)
+RSRCFILE = $(BOOTEXCIMG) $(KRNLEXCIMG) $(LDEREXCIMG) $(SHELEXCIMG) 
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# makefile (from 'Makefile', line 33)
+LOGOFILE = logo.bmp background.bmp
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+SESSION_MANAGER = local/ubuntu:@/tmp/.ICE-unix/1505,unix/ubuntu:/tmp/.ICE-unix/1505
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+TEXTDOMAIN = im-config
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e&iid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e&sid=6099a6c1-8fd8-45bf-977c-5a3b3bc5d03e","uploadToServer":true}
+# environment
+INVOCATION_ID = 2f9bf39d7d8b4835a8fd2228908103a1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6898
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# makefile (from 'Makefile', line 41)
+INSTALL_PATH = /boot/
+# environment
+GTK_IM_MODULE = ibus
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/ckcat/Code/learnOS/lesson03/Cosmos
+# makefile (from 'Makefile', line 24)
+VBOXVMFLGS = -C $(VM_PATH) -f vbox.mkf
+# makefile (from 'Makefile', line 20)
+X86BARD = -f ./Makefile.x86
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 1600
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# makefile (from 'Makefile', line 16)
+DBUGVM = bochs -q
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/ckcat
+# environment
+VSCODE_CODE_CACHE_PATH = /home/ckcat/.config/Code/CachedData/6cba118ac49a1b88332f312a8f67186f7f3c1643
+# environment
+LOGNAME = ckcat
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# makefile (from 'Makefile', line 30)
+VMDKFNAME = hd.img
+# environment
+ZSH = /home/ckcat/.oh-my-zsh
+# makefile (from 'Makefile', line 42)
+INSTALLSRCFILE_PATH = ./release/Cosmos.eki
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+MAKE_VERSION := 4.1
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile', line 8)
+MKDIR = mkdir
+# environment
+XDG_VTNR = 2
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 35)
+BUILD_PATH = ./build
+# makefile (from 'Makefile', line 19)
+MAKE = make
+# default
+MAKECMDGOALS := all
+# environment
+ 
+QT_IM_MODULE = ibus
+# makefile (from 'Makefile', line 9)
+RMDIR = rmdir
+# environment
+SHLVL = 0
+# makefile (from 'Makefile', line 40)
+CPLILDR_PATH = ./release/
+# makefile (from 'Makefile', line 36)
+EXKNL_PATH = ./exckrnl
+# makefile (from 'Makefile', line 43)
+SRCFILE = $(BOOTEXCIMG) $(KRNLEXCIMG) $(LDEREXCIMG) $(SHELEXCIMG)
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# makefile (from 'Makefile', line 29)
+VDIFNAME = hd.vdi
+# environment
+XDG_SESSION_ID = 2
+# environment
+USER = ckcat
+# makefile
+.DEFAULT_GOAL := build
+# makefile (from 'Makefile', line 22)
+VVMRLMOSFLGS = -C $(BUILD_PATH) -f vbox.mkf
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := make
+# environment
+OLDPWD = /home/ckcat
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-69879c7f-1.61.2-main.sock
+# makefile
+MAKEFLAGS = pqrRs
+# environment
+MFLAGS = -pqrRs
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/ckcat/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Makefile', line 27)
+IMGSECTNR = 204800
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+TEXTDOMAINDIR = /usr/share/locale/
+# makefile (from 'Makefile', line 31)
+KRNLEXCIMG = Cosmos.bin
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from 'Makefile', line 15)
+VM = qemu-system-x86_64
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+DBUS_STARTER_BUS_TYPE = session
+# environment
+QT4_IM_MODULE = xim
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# makefile (from 'Makefile', line 34)
+FONTFILE = font.fnt
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# makefile (from 'Makefile', line 46)
+INITLDRIMH = initldrimh.bin
+# environment
+WINDOWPATH = 2
+# makefile (from 'Makefile', line 25)
+VMFLAGES = -smp 4 -hda $(VMDKFNAME) -m 256 -enable-kvm
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# makefile (from 'Makefile', line 52)
+LKIMG_INFILE = $(INITLDRSVE) $(INITLDRKRL) $(KRNLEXCIMG) $(FONTFILE) $(LOGOFILE)
+# default
+.RECIPEPREFIX := 
+ 
+# makefile (from 'Makefile', line 18)
+IMGTOVMDK = qemu-img convert -f raw -O vmdk
+# makefile (from 'Makefile', line 47)
+INITLDRKRL = initldrkrl.bin
+# environment
+LANG = C
+# environment
+VSCODE_PID = 6898
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=62538f96995e77fc88f16a4161814345
+# makefile (from 'Makefile', line 28)
+PHYDSK = /dev/sdb
+# variable set hash-table stats:
+# Load=145/1024=14%, Rehash=0, Collisions=20/177=11%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2049, inode 1058450): 7 files, no impossibilities.
+
+# 7 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+VBOXRUN:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 99):
+	$(MAKE) $(VVMRLMOSFLGS)
+
+krnlexc: cpkrnl wrimg exc
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+all:
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/13=15%
+#  recipe to execute (from 'Makefile', line 58):
+	$(MAKE) $(X86BARD)
+	@echo '恭喜我，系统编译构建完成！ ^_^'
+
+cprelease:
+ 
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 83):
+	$(CD) $(EXKNL_PATH) && $(CP) $(CPFLAGES) $(RSRCFILE) $(RELEDSTPATH)
+
+.PHONY: install x32 build print clean all krnlexc cpkrnl wrimg phymod exc vdi vdiexc cprelease release createimg
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+x32:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+wrimg:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+KIMG:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 91):
+	@echo '正在生成Cosmos内核映像文件，请稍后……'
+	$(CD) $(CPLILDR_PATH) && $(LKIMG) -lhf $(INITLDRIMH) -o Cosmos.eki -f $(LKIMG_INFILE)
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+print:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 67):
+	@echo '*********正在开始编译构建系统*************'
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-02 07:20:35.175513581
+#  File has been updated.
+#  Successfully updated.
+
+exc:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 86):
+	$(CD) $(EXKNL_PATH) && $(VM) $(VMFLAGES)
+
+build: clean print all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+vdiexc: vdi
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 73):
+	$(MAKE) $(VBOXVMFLGS)
+
+vboxtest: release VBOXRUN
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+createimg:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 110):
+	$(DD) bs=512 if=/dev/zero of=$(DSKIMG) count=$(IMGSECTNR)
+
+dbugexc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 88):
+	$(CD) $(EXKNL_PATH) && $(DBUGVM)
+
+release: clean all cplmildr cpkrnl cprelease KIMG
+#  Phony target (prerequisite of .PHONY).
+ 
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+dbugkrnl: cpkrnl wrimg dbugexc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+cpkrnl:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 81):
+	$(CD) $(BUILD_PATH) && $(CP) $(CPFLAGES) $(SRCFILE) $(DSTPATH)
+
+KVMRUN:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 95):
+	$(VM) $(VMFLAGES)
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 61):
+	$(CD) $(BUILD_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh
+	$(CD) $(EXKNL_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh
+	$(CD) $(CPLILDR_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.eki *.map *.lib *.btoj *.elf *.vdi *vmdk *.lds *.mk *.mki krnlobjs.mh
+	@echo '清理全部已构建文件... ^_^'
+
+kvmtest: release KVMRUN
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+cplmildr:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 78):
+	$(CP) $(CPFLAGES) $(CPLILDRSRC) $(CPLILDR_PATH)
+
+phymod:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+vdi: cpkrnl wrimg
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 75):
+	$(CD) $(EXKNL_PATH) && $(IMGTOVDI) $(DSKIMG) $(VDIFNAME)
+	$(CD) $(EXKNL_PATH) && $(IMGTOVMDK) $(DSKIMG) $(VMDKFNAME)
+
+install:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 113):
+	@echo '下面将开始安装Cosmos内核，请确认……'
+	sudo $(CP) $(CPFLAGES) $(INSTALLSRCFILE_PATH) $(INSTALL_PATH)
+	@echo 'Cosmos内核已经安装完成，请重启计算机……'
+
+# files hash-table stats:
+# Load=28/1024=3%, Rehash=0, Collisions=0/92=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 35 / storage = 269 B / avg = 7 B
+# current buf: size = 8162 B / used = 269 B / count = 35 / avg = 7 B
+
+# strcache performance: lookups = 99 / hit rate = 64%
+# hash-table stats:
+# Load=35/8192=0%, Rehash=0, Collisions=1/99=1%
+# Finished Make data base on Tue Nov  2 07:29:43 2021
+
+ 

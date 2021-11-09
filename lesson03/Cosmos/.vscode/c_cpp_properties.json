@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [],
+            "defines": [],
+            "browse": {
+                "path": [
+                    "/home/ckcat",
+                    "${workspaceFolder}/../../../../home/ckcat/Code/learnOS/lesson03/Cosmos"
+                ]
+            }
+        }
+    ],
+    "version": 4
+}
