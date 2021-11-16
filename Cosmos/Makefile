@@ -17,7 +17,7 @@ DBUGVM = bochs -q
 IMGTOVDI = qemu-img convert -f raw -O vdi
 IMGTOVMDK = qemu-img convert -f raw -O vmdk
 MAKE = make
-X86BARD = -f ./Makefile.x86
+X86BARD = -f ./Makefile.x86.mk
 
 VVMRLMOSFLGS = -C $(BUILD_PATH) -f vbox.mkf
 
@@ -58,13 +58,17 @@ build: clean print all
 
 all:
 	$(MAKE) $(X86BARD)
+	@echo '$(MAKE) $(X86BARD)'
 	@echo '恭喜我，系统编译构建完成！ ^_^'
 clean:
 	$(CD) $(INITLDR_PATH); $(MAKE) clean
-	$(echo) "$(CD) $(INITLDR_PATH); $(MAKE) clean"
+	@echo "$(CD) $(INITLDR_PATH); $(MAKE) clean"
 	$(CD) $(BUILD_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh *.app
+	@echo "$(CD) $(BUILD_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh *.app"
 	$(CD) $(EXKNL_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh *.app
+	@echo "$(CD) $(EXKNL_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.map *.lib *.btoj *.vdi *.elf *vmdk *.lds *.mk *.mki krnlobjs.mh *.app"
 	$(CD) $(CPLILDR_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.eki *.map *.lib *.btoj *.elf *.vdi *vmdk *.lds *.mk *.mki krnlobjs.mh *.app
+	@echo "$(CD) $(CPLILDR_PATH); $(RM) -f *.o *.bin *.i *.krnl *.s *.eki *.map *.lib *.btoj *.elf *.vdi *vmdk *.lds *.mk *.mki krnlobjs.mh *.app"
 	@echo 'Cosmos:清理全部已构建文件... ^_^'
 
 print:
@@ -93,7 +97,9 @@ dbugexc:
 
 KIMG:
 	@echo '正在生成Cosmos内核映像文件，请稍后……'
+	chmod +x $(CPLILDR_PATH)lmoskrlimg
 	$(CD) $(CPLILDR_PATH) && $(LKIMG) -lhf $(INITLDRIMH) -o Cosmos.eki -f $(LKIMG_INFILE)
+	@echo '$(CD) $(CPLILDR_PATH) && $(LKIMG) -lhf $(INITLDRIMH) -o Cosmos.eki -f $(LKIMG_INFILE)'
 
 KVMRUN:
 	$(VM) $(VMFLAGES)

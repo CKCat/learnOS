@@ -26,7 +26,8 @@ everymk : $(PREMENTMK_OBJS)
 
 
 %.lds : $(CCBUILDPATH)%.S
-	$(CC) $(CPPFLGSLDS) -o $@ $<
+	$(CC) $(CPPFLGSLDS) -o $@ $<  
+	
 	$(PRINTCSTR)
 
 %.mkh : $(CCBUILDPATH)%.S

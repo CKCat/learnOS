@@ -1,8 +1,8 @@
 MAKEFLAGS = -s
-CCSTR		= 	'CC -[M] 正在生成makefile... '$<
+CCSTR		= 	'CC -[M] 正在从 $< 生成 $@ 文件'
 PRINTCSTR 	=	@echo $(CCSTR) 
 
-CCSTRLMK	= 	'LMKFBUID -[M] 正在生成makefile... '$<
+CCSTRLMK	= 	'LMKFBUID -[M] 正在从  $< 生成 $@ 文件'
 PRINTCSTRLMK 	=	@echo $(CCSTRLMK) 
 
 
@@ -24,7 +24,10 @@ everything : $(PREMENTMKI_OBJS)
 
 everymk : $(PREMENTMK_OBJS)
 
-
+# %.lds: %.S 是 make 的匹配模式，即 : 两边的 % 表示相同的文件名。
+# $@ 指当前目标
+# $< 指代第一个前置条件
+# 例如下面的 $@ 指 %.lds ， $< 指 $(CCBUILDPATH)%.S
 %.lds : $(CCBUILDPATH)%.S
 	$(CC) $(CPPFLGSLDS) -o $@ $<
 	$(PRINTCSTR)
@@ -38,5 +41,6 @@ everymk : $(PREMENTMK_OBJS)
 	$(PRINTCSTR)
 
 %.mk : %.mki
+	chmod +x $(LMKFBUID)
 	$(LMKFBUID) -i $< -o $@
 	$(PRINTCSTRLMK)
