@@ -146,6 +146,7 @@ void init_phymmarge()
     machbstart_t *mbsp = &kmachbsp;
     phymmarge_t *pmarge_adr = NULL;
     u64_t pmrgesz = 0;
+    // 获取物理内存的首地址和大小
     ret_phymmarge_adrandsz(mbsp, &pmarge_adr, &pmrgesz);
     if (NULL == pmarge_adr || 0 == pmrgesz)
     {
@@ -178,9 +179,11 @@ void init_phymmarge()
     return;
 }
 
+// hal 层的内存初始化函数
 void init_halmm()
-{
+{   
     init_phymmarge();
+    // Cosmos 物理内存管理器初始化
     init_memmgr();
     kprint("物理内存初始化成功\n");
     // die(0x400);

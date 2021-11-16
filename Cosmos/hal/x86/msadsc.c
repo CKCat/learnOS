@@ -38,6 +38,7 @@ void disp_one_msadsc(msadsc_t *mp)
 	return;
 }
 
+// 计算 msadsc_t 结构数组的开始地址和数组元素个数
 bool_t ret_msadsc_vadrandsz(machbstart_t *mbsp, msadsc_t **retmasvp, u64_t *retmasnr)
 {
 	if (NULL == mbsp || NULL == retmasvp || NULL == retmasnr)
@@ -56,8 +57,10 @@ bool_t ret_msadsc_vadrandsz(machbstart_t *mbsp, msadsc_t **retmasvp, u64_t *retm
 	{
 		if (PMR_T_OSAPUSERRAM == pmagep[i].pmr_type)
 		{
+			// 获取内存大小
 			usrmemsz += pmagep[i].pmr_lsize;
-			msadnr += (pmagep[i].pmr_lsize >> 12);
+			// 获取 4K 大小内存的个数。
+			msadnr += (pmagep[i].pmr_lsize >> 12); 
 		}
 	}
 	if (0 == usrmemsz || (usrmemsz >> 12) < 1 || msadnr < 1)
@@ -78,26 +81,31 @@ bool_t ret_msadsc_vadrandsz(machbstart_t *mbsp, msadsc_t **retmasvp, u64_t *retm
 }
 
 void write_one_msadsc(msadsc_t *msap, u64_t phyadr)
-{
+{	// 对 msadsc_t 结构做基本的初始化，比如链表、锁、标志位
 	msadsc_t_init(msap);
+	// 这是把一个 64 位的变量地址转换成 phyadrflgs_t* 类型方便取得其中的地址位段
 	phyadrflgs_t *tmp = (phyadrflgs_t *)(&phyadr);
+	// 把页的物理地址写入到 msadsc_t 结构中
 	msap->md_phyadrs.paf_padrs = tmp->paf_padrs;
 	return;
 }
 
+// 开始真正初始化 msadsc_t 结构数组，返回内存页的个数
 u64_t init_msadsc_core(machbstart_t *mbsp, msadsc_t *msavstart, u64_t msanr)
 {
+	// 获取 phymmarge_t 结构数组开始地址
 	phymmarge_t *pmagep = (phymmarge_t *)phyadr_to_viradr((adr_t)mbsp->mb_e820expadr);
 	u64_t mdindx = 0;
+	// 扫描 phymmarge_t 结构数组
 	for (u64_t i = 0; i < mbsp->mb_e820exnr; i++)
-	{
+	{	// 判断 phymmarge_t 结构的类型是不是可用内存
 		if (PMR_T_OSAPUSERRAM == pmagep[i].pmr_type)
 		{
-
+			// 遍历 phymmarge_t 结构的地址区间
 			for (u64_t start = pmagep[i].pmr_saddr; start < pmagep[i].pmr_end; start += 4096)
-			{
+			{	// 每次加上 4KB-1 比较是否小于等于 phymmarge_t 结构的结束地址 
 				if ((start + 4096 - 1) <= pmagep[i].pmr_end)
-				{
+				{	// 以当前地址为参数写入第 mdindx 个 msadsc 结构
 					write_one_msadsc(&msavstart[mdindx], start);
 					mdindx++;
 				}
@@ -108,23 +116,30 @@ u64_t init_msadsc_core(machbstart_t *mbsp, msadsc_t *msavstart, u64_t msanr)
 	return mdindx;
 }
 
+// 初始化内存页结构 msadsc_t
 void init_msadsc()
 {
 	u64_t coremdnr = 0, msadscnr = 0;
 	msadsc_t *msadscvp = NULL;
 	machbstart_t *mbsp = &kmachbsp;
+	// 计算 msadsc_t 结构数组的开始地址和数组元素个数
 	if (ret_msadsc_vadrandsz(mbsp, &msadscvp, &msadscnr) == FALSE)
 	{
 		system_error("init_msadsc ret_msadsc_vadrandsz err\n");
 	}
+	// 开始真正初始化 msadsc_t 结构数组
 	coremdnr = init_msadsc_core(mbsp, msadscvp, msadscnr);
 	if (coremdnr != msadscnr)
 	{
 		system_error("init_msadsc init_msadsc_core err\n");
 	}
+	// 将 msadsc_t 结构数组的开始的物理地址写入 kmachbsp 结构中
 	mbsp->mb_memmappadr = viradr_to_phyadr((adr_t)msadscvp);
+	// 将 msadsc_t 结构数组的元素个数写入 kmachbsp 结构中
 	mbsp->mb_memmapnr = coremdnr;
+	// 将 msadsc_t 结构数组的大小写入 kmachbsp 结构中 
 	mbsp->mb_memmapsz = coremdnr * sizeof(msadsc_t);
+	// 计算下一个空闲内存的开始地址
 	mbsp->mb_nextwtpadr = PAGE_ALIGN(mbsp->mb_memmappadr + mbsp->mb_memmapsz);
 	return;
 }
@@ -155,6 +170,7 @@ void disp_phymsadsc()
 	return;
 }
 
+// 搜索一段内存地址空间所对应的msadsc_t结构
 u64_t search_segment_occupymsadsc(msadsc_t *msastart, u64_t msanr, u64_t ocpystat, u64_t ocpyend)
 {
 	u64_t mphyadr = 0, fsmsnr = 0;
@@ -162,7 +178,7 @@ u64_t search_segment_occupymsadsc(msadsc_t *msastart, u64_t msanr, u64_t ocpysta
 	for (u64_t mnr = 0; mnr < msanr; mnr++)
 	{
 		if ((msastart[mnr].md_phyadrs.paf_padrs << PSHRSIZE) == ocpystat)
-		{
+		{	// 找出开始地址对应的第一个msadsc_t结构，就跳转到step1
 			fstatmp = &msastart[mnr];
 			goto step1;
 		}
@@ -174,7 +190,7 @@ step1:
 		return 0;
 	}
 	for (u64_t tmpadr = ocpystat; tmpadr < ocpyend; tmpadr += PAGESIZE, fsmsnr++)
-	{
+	{	// 从开始地址对应的第一个msadsc_t结构开始设置，直到结束地址对应的最后一个masdsc_t结构
 		mphyadr = fstatmp[fsmsnr].md_phyadrs.paf_padrs << PSHRSIZE;
 		if (mphyadr != tmpadr)
 		{
@@ -186,10 +202,12 @@ step1:
 		{
 			return 0;
 		}
+		// 设置msadsc_t结构为已经分配，已经分配给内核
 		fstatmp[fsmsnr].md_indxflgs.mf_mocty = MF_MOCTY_KRNL;
 		fstatmp[fsmsnr].md_indxflgs.mf_uindx++;
 		fstatmp[fsmsnr].md_phyadrs.paf_alloc = PAF_ALLOC;
 	}
+	// 进行一些数据的正确性检查
 	u64_t ocpysz = ocpyend - ocpystat;
 	if ((ocpysz & 0xfff) != 0)
 	{
@@ -266,21 +284,25 @@ bool_t search_krloccupymsadsc_core(machbstart_t *mbsp)
 	u64_t retschmnr = 0;
 	msadsc_t *msadstat = (msadsc_t *)phyadr_to_viradr((adr_t)mbsp->mb_memmappadr);
 	u64_t msanr = mbsp->mb_memmapnr;
+	// 搜索 BIOS 中断表占用的内存页所对应 msadsc_t 结构
 	retschmnr = search_segment_occupymsadsc(msadstat, msanr, 0, 0x1000);
 	if (0 == retschmnr)
 	{
 		return FALSE;
 	}
+	// 搜索内核栈占用的内存页所对应 msadsc_t 结构
 	retschmnr = search_segment_occupymsadsc(msadstat, msanr, mbsp->mb_krlinitstack & (~(0xfffUL)), mbsp->mb_krlinitstack);
 	if (0 == retschmnr)
 	{
 		return FALSE;
 	}
+	// 搜索内核占用的内存页所对应 msadsc_t 结构
 	retschmnr = search_segment_occupymsadsc(msadstat, msanr, mbsp->mb_krlimgpadr, mbsp->mb_nextwtpadr);
 	if (0 == retschmnr)
 	{
 		return FALSE;
 	}
+	// 搜索内核映像文件占用的内存页所对应 msadsc_t 结构
 	retschmnr = search_segment_occupymsadsc(msadstat, msanr, mbsp->mb_imgpadr, mbsp->mb_imgpadr + mbsp->mb_imgsz);
 	if (0 == retschmnr)
 	{
@@ -289,8 +311,9 @@ bool_t search_krloccupymsadsc_core(machbstart_t *mbsp)
 	return TRUE;
 }
 
+// 初始化搜索内核占用的内存页面
 void init_search_krloccupymm(machbstart_t *mbsp)
-{
+{	// 初始化搜索内核占用的内存页面
 	if (search_krloccupymsadsc_core(mbsp) == FALSE)
 	{
 		system_error("search_krloccupymsadsc_core fail\n");

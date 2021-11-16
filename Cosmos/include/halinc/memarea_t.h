@@ -46,39 +46,44 @@ typedef struct s_MAFUNCOBJS
 #define BAFH_STUS_ONEM 1
 #define BAFH_STUS_DIVP 2
 #define BAFH_STUS_DIVM 3
+// 挂载 msadsc_t 结构，以 2 的 n 次方对内存页面进行分组
 typedef struct s_BAFHLST
 {
-	spinlock_t af_lock;
-	u32_t af_stus;
-	uint_t af_oder;
-	uint_t af_oderpnr;
-	uint_t af_fobjnr;
+	spinlock_t af_lock;	// 保护自身结构的自旋锁
+	u32_t af_stus;		// 状态 
+	uint_t af_oder;		// 页面数的位移量
+	uint_t af_oderpnr;	// oder 对应的页面数比如 oder 为 2 那就是 1<<2=4
+	uint_t af_fobjnr;	// 多少个空闲 msadsc_t 结构，即空闲页面
 	//uint_t af_aobjnr;
-	uint_t af_mobjnr;
-	uint_t af_alcindx;
-	uint_t af_freindx;
-	list_h_t af_frelst;
-	list_h_t af_alclst;
+	uint_t af_mobjnr;	// 此结构的 msadsc_t 结构总数，即此结构总页面
+	uint_t af_alcindx;	// 此结构的分配计数
+	uint_t af_freindx;	// 此结构的释放计数
+	list_h_t af_frelst;	// 挂载此结构的空闲 msadsc_t 结构
+	list_h_t af_alclst;	// 挂载此结构已经分配的 msadsc_t 结构
 	list_h_t af_ovelst;
 }bafhlst_t;
 
 #define MDIVMER_ARR_LMAX 52
 #define MDIVMER_ARR_BMAX 11
 #define MDIVMER_ARR_OMAX 9
+// 进行内存分割合并管理
 typedef struct s_MEMDIVMER
 {
-	spinlock_t dm_lock;
-	u32_t dm_stus;
-	uint_t dm_dmmaxindx;
-	uint_t dm_phydmindx;
+	spinlock_t dm_lock;		// 保护自身结构的自旋锁
+	u32_t dm_stus;			// 状态
+	uint_t dm_dmmaxindx;	// 内存分配次数
+	uint_t dm_phydmindx;	// 内存合并次数
 	uint_t dm_predmindx;
 	uint_t dm_divnr;
 	uint_t dm_mernr;
 	//bafhlst_t dm_mdmonelst[MDIVMER_ARR_OMAX];
 	//bafhlst_t dm_mdmblklst[MDIVMER_ARR_BMAX];
-	bafhlst_t dm_mdmlielst[MDIVMER_ARR_LMAX];
-	bafhlst_t dm_onemsalst;
+	bafhlst_t dm_mdmlielst[MDIVMER_ARR_LMAX];	// bafhlst_t 结构数组
+	bafhlst_t dm_onemsalst;	// 单个的 bafhlst_t 结构
 }memdivmer_t;
+
+
+
 #define MA_TYPE_INIT 0
 #define MA_TYPE_HWAD 1
 #define MA_TYPE_KRNL 2
@@ -94,24 +99,26 @@ typedef struct s_MEMDIVMER
 #define MA_PROC_LSTART 0x400000000
 #define MA_PROC_LSZ (0xffffffffffffffff-0x400000000)
 #define MA_PROC_LEND (MA_PROC_LSTART+MA_PROC_LSZ)
+
+// 内存区的数据结构，进行内存区，解决功能分区的问题
 //0x400000000  0x40000000
 typedef struct s_MEMAREA
 {
-	list_h_t ma_list;
-	spinlock_t ma_lock;
-	uint_t ma_stus;
-	uint_t ma_flgs;
-	uint_t ma_type;
-	sem_t ma_sem;
-	wait_l_head_t ma_waitlst;
-	uint_t ma_maxpages;
-	uint_t ma_allocpages;
-	uint_t ma_freepages;
-	uint_t ma_resvpages;
-	uint_t ma_horizline;
-	adr_t ma_logicstart;
-	adr_t ma_logicend;
-	uint_t ma_logicsz;
+	list_h_t ma_list;			// 内存区自身的链表
+	spinlock_t ma_lock;			// 保护内存区的自旋锁
+	uint_t ma_stus;				// 内存区的状态
+	uint_t ma_flgs;				// 内存区的标志
+	uint_t ma_type;				// 内存区的类型
+	sem_t ma_sem;				// 内存区的信号量
+	wait_l_head_t ma_waitlst;	// 内存区的等待队列
+	uint_t ma_maxpages;			// 内存区总的页面数
+	uint_t ma_allocpages;		// 内存区分配的页面数
+	uint_t ma_freepages;		// 内存区空闲的页面数
+	uint_t ma_resvpages;		// 内存区保留的页面数
+	uint_t ma_horizline;		// 内存区分配时的水位线
+	adr_t ma_logicstart;		// 内存区开始地址
+	adr_t ma_logicend;			// 内存区结束地址
+	uint_t ma_logicsz;			// 内存区大小
 	adr_t ma_effectstart;
 	adr_t ma_effectend;
 	uint_t ma_effectsz;
@@ -129,8 +136,18 @@ typedef struct s_MEMAREA
 	*配算法的数据结构，这样每个区可
 	*方便的实现不同的分配策略，或者
 	*有天你觉得我的分配算法是渣渣，
-	*完全可以替换mafuncobjs_t结构
+	*完全可以替换 mafuncobjs_t 结构
 	*中的指针，指向你的函数。
 	*/
 }memarea_t;
 #endif
+
+/**
+memarea_t -> ma_mdmdata
+				|
+			memdivmer_t -> dm_mdmlielst		
+								|				
+							bafhlst_t[0] -> af_ovelst
+								|
+							bafhlst_t[1] -> af_ovelst
+**/

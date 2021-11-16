@@ -6,12 +6,16 @@
 #include "cosmostypes.h"
 #include "cosmosmctrl.h"
 
+// Cosmos 物理内存管理器初始化
 void init_memmgr()
-{
+{	// 初始化内存页结构 msadsc_t
 	init_msadsc();
+	// 初始化内存区结构 memarea_t
 	init_memarea();
 	init_copy_pagesfvm();
+	// 初始化搜索内核占用的内存页面
 	init_search_krloccupymm(&kmachbsp);
+	// 初始化页面合并
 	init_merlove_mem();
 	init_memmgrob();
 	init_kmsob();

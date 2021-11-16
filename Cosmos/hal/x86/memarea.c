@@ -58,7 +58,7 @@ void bafhlst_t_init(bafhlst_t *initp, u32_t stus, uint_t oder, uint_t oderpnr)
 }
 
 void memdivmer_t_init(memdivmer_t *initp)
-{
+{	// 初始化 medivmer_t 结构体的基本数据
 	knl_spinlock_init(&initp->dm_lock);
 	initp->dm_stus = 0;
 	initp->dm_dmmaxindx = 0;
@@ -66,7 +66,7 @@ void memdivmer_t_init(memdivmer_t *initp)
 	initp->dm_predmindx = 0;
 	initp->dm_divnr = 0;
 	initp->dm_mernr = 0;
-
+	// 循环初始化 memdivmer_t 结构体中 dm_mdmlielst 数组中的每个 bafhlst_t 结构的基本数据
 	for (uint_t li = 0; li < MDIVMER_ARR_LMAX; li++)
 	{
 		bafhlst_t_init(&initp->dm_mdmlielst[li], BAFH_STUS_DIVM, li, (1UL << li));
@@ -77,7 +77,7 @@ void memdivmer_t_init(memdivmer_t *initp)
 }
 
 void memarea_t_init(memarea_t *initp)
-{
+{	// 初始化memarea_t 结构体的基本数据
 	list_init(&initp->ma_list);
 	knl_spinlock_init(&initp->ma_lock);
 	initp->ma_stus = 0;
@@ -100,14 +100,16 @@ void memarea_t_init(memarea_t *initp)
 	initp->ma_allmsadscnr = 0;
 	arclst_t_init(&initp->ma_arcpglst);
 	mafuncobjs_t_init(&initp->ma_funcobj);
+	// 初始化 memarea_t 结构体中的 memdivmer_t 结构体
 	memdivmer_t_init(&initp->ma_mdmdata);
 	initp->ma_privp = NULL;
 	return;
 }
 
 bool_t init_memarea_core(machbstart_t *mbsp)
-{
+{	// 获取 memarea_t 结构开始地址
 	u64_t phymarea = mbsp->mb_nextwtpadr;
+	// 检查内存空间够不够放下 MEMAREA_MAX 个 memarea_t 结构实例变量
 	if (initchkadr_is_ok(mbsp, phymarea, (sizeof(memarea_t) * MEMAREA_MAX)) != 0)
 	{
 		return FALSE;
@@ -115,32 +117,41 @@ bool_t init_memarea_core(machbstart_t *mbsp)
 	memarea_t *virmarea = (memarea_t *)phyadr_to_viradr((adr_t)phymarea);
 	for (uint_t mai = 0; mai < MEMAREA_MAX; mai++)
 	{
+		// 循环初始化每个 memarea_t 结构实例变量
 		memarea_t_init(&virmarea[mai]);
 	}
+	// 设置硬件区的类型和空间大小
 	virmarea[0].ma_type = MA_TYPE_HWAD;
 	virmarea[0].ma_logicstart = MA_HWAD_LSTART;
 	virmarea[0].ma_logicend = MA_HWAD_LEND;
 	virmarea[0].ma_logicsz = MA_HWAD_LSZ;
+	// 设置内核区的类型和空间大小
 	virmarea[1].ma_type = MA_TYPE_KRNL;
 	virmarea[1].ma_logicstart = MA_KRNL_LSTART;
 	virmarea[1].ma_logicend = MA_KRNL_LEND;
 	virmarea[1].ma_logicsz = MA_KRNL_LSZ;
+	// 设置应用区的类型和空间大小
 	virmarea[2].ma_type = MA_TYPE_PROC;
 	virmarea[2].ma_logicstart = MA_PROC_LSTART;
 	virmarea[2].ma_logicend = MA_PROC_LEND;
 	virmarea[2].ma_logicsz = MA_PROC_LSZ;
 	virmarea[3].ma_type = MA_TYPE_SHAR;
+	// 将 memarea_t 结构的开始的物理地址写入 kmachbsp 结构中 
 	mbsp->mb_memznpadr = phymarea;
+	// 将所有 memarea_t 结构的大小写入 kmachbsp 结构中 
 	mbsp->mb_memznnr = MEMAREA_MAX;
 	mbsp->mb_memznsz = sizeof(memarea_t) * MEMAREA_MAX;
+	// 计算下一个空闲内存的开始地址
 	mbsp->mb_nextwtpadr = PAGE_ALIGN(phymarea + sizeof(memarea_t) * MEMAREA_MAX);
 	//.......
 	return TRUE;
 }
 
+// 初始化内存区
 LKINIT void init_memarea()
 {
 	//kprint("memarea_t is sz[%x]\n",sizeof(memarea_t));
+	// 真正初始化内存区
 	if (init_memarea_core(&kmachbsp) == FALSE)
 	{
 		system_error("init_memarea_core fail");
@@ -385,21 +396,26 @@ bool_t merlove_scan_continumsadsc(memarea_t *mareap, msadsc_t *fmstat, uint_t *f
 	uint_t retfindmnr = 0;
 	bool_t rets = FALSE;
 	uint_t tmidx = *fntmsanr;
+	// 把一组连续的msadsc_t结构体挂载到合适的m_mdmlielst数组中的bafhlst_t结构中
 	for (; tmidx < fmsanr; tmidx++)
-	{
+	{	// 一个msadsc_t结构是否属于这个内存区，是否空闲
 		if (msastat[tmidx].md_indxflgs.mf_marty == mdfp->mf_marty &&
 			0 == msastat[tmidx].md_indxflgs.mf_uindx &&
 			MF_MOCTY_FREE == msastat[tmidx].md_indxflgs.mf_mocty &&
 			PAF_NO_ALLOC == msastat[tmidx].md_phyadrs.paf_alloc)
-		{
+		{	// 返回从这个msadsc_t结构开始到下一个非空闲、地址非连续的msadsc_t结构对应的msadsc_t结构索引号到retfindmnr变量中
 			rets = scan_len_msadsc(&msastat[tmidx], mdfp, fmsanr, &retfindmnr);
 			if (FALSE == rets)
 			{
 				system_error("scan_len_msadsc err\n");
 			}
+			// 下一轮开始的msadsc_t结构索引
 			*fntmsanr = tmidx + retfindmnr + 1;
+			// 当前地址连续msadsc_t结构的开始地址
 			*retmsastatp = &msastat[tmidx];
+			// 当前地址连续msadsc_t结构的结束地址
 			*retmsaendp = &msastat[tmidx + retfindmnr];
+			// 当前有多少个地址连续msadsc_t结构
 			*retfmnr = retfindmnr + 1;
 			return TRUE;
 		}
@@ -423,23 +439,24 @@ uint_t merlove_setallmarflgs_onmemarea(memarea_t *mareap, msadsc_t *mstat, uint_
 	}
 	u32_t muindx = 0;
 	msadflgs_t *mdfp = NULL;
+	// 获取内存区类型
 	switch (mareap->ma_type)
 	{
 	case MA_TYPE_HWAD:
 	{
-		muindx = MF_MARTY_HWD << 5;
+		muindx = MF_MARTY_HWD << 5;		// 硬件区标签
 		mdfp = (msadflgs_t *)(&muindx);
 		break;
 	}
 	case MA_TYPE_KRNL:
 	{
-		muindx = MF_MARTY_KRL << 5;
+		muindx = MF_MARTY_KRL << 5;		// 内核区标签
 		mdfp = (msadflgs_t *)(&muindx);
 		break;
 	}
 	case MA_TYPE_PROC:
 	{
-		muindx = MF_MARTY_PRC << 5;
+		muindx = MF_MARTY_PRC << 5;		// 应用区标签
 		mdfp = (msadflgs_t *)(&muindx);
 		break;
 	}
@@ -460,13 +477,15 @@ uint_t merlove_setallmarflgs_onmemarea(memarea_t *mareap, msadsc_t *mstat, uint_
 	}
 	u64_t phyadr = 0;
 	uint_t retnr = 0;
+	// 扫描所有的 msadsc_t 结构
 	for (uint_t mix = 0; mix < msanr; mix++)
 	{
 		if (MF_MARTY_INIT == mstat[mix].md_indxflgs.mf_marty)
-		{
+		{	// 获取 msadsc_t 结构对应的地址
 			phyadr = mstat[mix].md_phyadrs.paf_padrs << PSHRSIZE;
+			// 和内存区的地址区间比较
 			if (phyadr >= mareap->ma_logicstart && ((phyadr + PAGESIZE) - 1) <= mareap->ma_logicend)
-			{
+			{	// 设置msadsc_t结构的标签
 				mstat[mix].md_indxflgs.mf_marty = mdfp->mf_marty;
 				retnr++;
 			}
@@ -619,13 +638,18 @@ bool_t continumsadsc_add_bafhlst(memarea_t *mareap, bafhlst_t *bafhp, msadsc_t *
 		return FALSE;
 	}
 	fstat->md_indxflgs.mf_olkty = MF_OLKTY_ODER;
+	// 开始的msadsc_t结构指向最后的msadsc_t结构 
 	fstat->md_odlink = fend;
 	// fstat==fend
 	fend->md_indxflgs.mf_olkty = MF_OLKTY_BAFH;
+	// 开始的msadsc_t结构指向最后的msadsc_t结构 
 	fend->md_odlink = bafhp;
+	// 把多个地址连续的msadsc_t结构的的开始的那个msadsc_t结构挂载到bafhlst_t结构的af_frelst中
 	list_add(&fstat->md_list, &bafhp->af_frelst);
+	// 更新bafhlst_t的统计数据
 	bafhp->af_fobjnr++;
 	bafhp->af_mobjnr++;
+	// 更新bafhlst_t的统计数据
 	mareap->ma_maxpages += fmnr;
 	mareap->ma_freepages += fmnr;
 	mareap->ma_allmsadscnr += fmnr;
@@ -645,6 +669,7 @@ bool_t continumsadsc_mareabafh_core(memarea_t *mareap, msadsc_t **rfstat, msadsc
 	{
 		return FALSE;
 	}
+	// 根据地址连续的msadsc_t结构的数量查找合适bafhlst_t结构
 	bafhlst_t *bafhp = find_continumsa_inbafhlst(mareap, retval);
 	if (NULL == bafhp)
 	{
@@ -654,20 +679,25 @@ bool_t continumsadsc_mareabafh_core(memarea_t *mareap, msadsc_t **rfstat, msadsc
 	{
 		return FALSE;
 	}
+	// 判断bafhlst_t结构状态和类型对不对
 	if ((BAFH_STUS_DIVP == bafhp->af_stus || BAFH_STUS_DIVM == bafhp->af_stus) && MA_TYPE_PROC != mareap->ma_type)
-	{
+	{	// 看地址连续的msadsc_t结构的数量是不是正好是bafhp->af_oderpnr
 		tmpmnr = retval - bafhp->af_oderpnr;
+		// 根据地址连续的msadsc_t结构挂载到bafhlst_t结构中
 		if (continumsadsc_add_bafhlst(mareap, bafhp, mstat, &mstat[bafhp->af_oderpnr - 1], bafhp->af_oderpnr) == FALSE)
 		{
 			return FALSE;
 		}
+		// 如果地址连续的msadsc_t结构的数量正好是bafhp->af_oderpnr则完成，否则返回再次进入此函数
 		if (tmpmnr == 0)
 		{
 			*rfmnr = tmpmnr;
 			*rfend = NULL;
 			return TRUE;
 		}
+		// 如果地址连续的msadsc_t结构的数量正好是bafhp->af_oderpnr则完成，否则返回再次进入此函数
 		*rfstat = &mstat[bafhp->af_oderpnr];
+		// 还剩多少个地址连续的msadsc_t结构
 		*rfmnr = tmpmnr;
 
 		return TRUE;
@@ -694,8 +724,9 @@ bool_t merlove_continumsadsc_mareabafh(memarea_t *mareap, msadsc_t *mstat, msads
 	}
 	uint_t mnridx = mnr;
 	msadsc_t *fstat = mstat, *fend = mend;
+	// 如果mnridx > 0并且NULL != fend就循环调用continumsadsc_mareabafh_core函数，而mnridx和fend由这个函数控制
 	for (; (mnridx > 0 && NULL != fend);)
-	{
+	{	// 为一段地址连续的msadsc_t结构寻找合适m_mdmlielst数组中的bafhlst_t结构
 		if (continumsadsc_mareabafh_core(mareap, &fstat, &fend, &mnridx) == FALSE)
 		{
 			system_error("continumsadsc_mareabafh_core fail\n");
@@ -725,7 +756,7 @@ bool_t merlove_mem_onmemarea(memarea_t *mareap, msadsc_t *mstat, uint_t msanr)
 
 
 	for (; fntmnr < msanr;)
-	{
+	{	// 获取最多且地址连续的msadsc_t结构体的开始、结束地址、一共多少个msadsc_t结构体，下一次循环的fntmnr
 		retscan = merlove_scan_continumsadsc(mareap, fntmsap, &fntmnr, msanr, &retstatmsap, &retendmsap, &retfindmnr);
 		if (FALSE == retscan)
 		{
@@ -737,6 +768,7 @@ bool_t merlove_mem_onmemarea(memarea_t *mareap, msadsc_t *mstat, uint_t msanr)
 			{
 				system_error("check_continumsadsc fail\n");
 			}
+			// 把一组连续的msadsc_t结构体挂载到合适的m_mdmlielst数组中的bafhlst_t结构中
 			if (merlove_continumsadsc_mareabafh(mareap, retstatmsap, retendmsap, retfindmnr) == FALSE)
 			{
 				system_error("merlove_continumsadsc_mareabafh fail\n");
@@ -747,13 +779,16 @@ bool_t merlove_mem_onmemarea(memarea_t *mareap, msadsc_t *mstat, uint_t msanr)
 }
 
 bool_t merlove_mem_core(machbstart_t *mbsp)
-{
+{	// 获取 msadsc_t 结构的首地址
 	msadsc_t *mstatp = (msadsc_t *)phyadr_to_viradr((adr_t)mbsp->mb_memmappadr);
+	// 获取 msadsc_t 结构的个数
 	uint_t msanr = (uint_t)mbsp->mb_memmapnr, maxp = 0;
+	// 获取 memarea_t 结构的首地址
 	memarea_t *marea = (memarea_t *)phyadr_to_viradr((adr_t)mbsp->mb_memznpadr);
 	uint_t sretf = ~0UL, tretf = ~0UL;
+	// 遍历每个 memarea_t结构
 	for (uint_t mi = 0; mi < (uint_t)mbsp->mb_memznnr; mi++)
-	{
+	{	// 针对其中一个 memarea_t 结构给 msadsc_t 结构打上标签
 		sretf = merlove_setallmarflgs_onmemarea(&marea[mi], mstatp, msanr);
 		if ((~0UL) == sretf)
 		{
@@ -769,8 +804,9 @@ bool_t merlove_mem_core(machbstart_t *mbsp)
 			return FALSE;
 		}
 	}
+	// 遍历每个 memarea_t 结构
 	for (uint_t maidx = 0; maidx < (uint_t)mbsp->mb_memznnr; maidx++)
-	{
+	{	// 针对其中一个 memarea_t 结构对 msadsc_t 结构进行合并
 		if (merlove_mem_onmemarea(&marea[maidx], mstatp, msanr) == FALSE)
 		{
 			return FALSE;
@@ -940,6 +976,8 @@ void mem_check_mareadata(machbstart_t *mbsp)
 	}
 	return;
 }
+
+// 初始化页合并
 void init_merlove_mem()
 {
 	if (merlove_mem_core(&kmachbsp) == FALSE)
