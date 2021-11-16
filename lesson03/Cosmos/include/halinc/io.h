@@ -290,18 +290,19 @@ KLINE u32_t read_kesp()
     return esp;
 }
 
-KLINE u32_t read_kcr2()
+KLINE u64_t read_rsp()
 {
-    u32_t cr2;
+    u64_t rsp;
 
     __asm__ __volatile__(
-        "movl %%cr2,%0"
-        : "=g"(cr2)
+        "movq %%rsp,%0"
+        : "=g"(rsp)
         :
         : "memory");
 
-    return cr2;
+    return rsp;
 }
+
 KLINE void set_cr3(u64_t pl4adr)
 {
     __asm__ __volatile__(
@@ -309,6 +310,40 @@ KLINE void set_cr3(u64_t pl4adr)
         "movq %0,%%cr3 \n\t"
         :
         : "r"(pl4adr)
+        : "memory" //, "edx"
+    );
+    return;
+}
+
+KLINE uint_t read_cr2()
+{
+    uint_t regtmp = 0;
+    __asm__ __volatile__(
+        "movq %%cr2,%0\n\t"
+        : "=r"(regtmp)
+        :
+        : "memory");
+    return regtmp;
+}
+
+KLINE uint_t read_cr3()
+{
+    uint_t regtmp = 0;
+    __asm__ __volatile__(
+        "movq %%cr3,%0\n\t"
+        : "=r"(regtmp)
+        :
+        : "memory");
+    return regtmp;
+}
+
+KLINE void write_cr3(uint_t r_val)
+{
+    __asm__ __volatile__(
+
+        "movq %0,%%cr3 \n\t"
+        :
+        : "r"(r_val)
         : "memory" //, "edx"
     );
     return;

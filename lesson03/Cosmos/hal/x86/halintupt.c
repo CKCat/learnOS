@@ -42,8 +42,11 @@ void init_intfltdsc()
 PUBLIC void init_halintupt()
 {
     init_descriptor();
+    // 初始化中断
     init_idt_descriptor();
+    // 初始化中断异常描述符
     init_intfltdsc();
+    // 初始化中断控制器
     init_i8259();
     i8259_enabled_line(0);
     return;
@@ -168,7 +171,7 @@ void hal_do_hwint(uint_t intnumb, void *krnlsframp)
 }
 
 // 异常分发器
-void hal_fault_allocator(uint_t faultnumb, void *krnlsframp)
+void hal_fault_allocator(uint_t faultnumb, void *krnlsframp) //eax,edx
 {
     kprint("faultnumb:%x\n", faultnumb);
     for (;;)
@@ -178,12 +181,14 @@ void hal_fault_allocator(uint_t faultnumb, void *krnlsframp)
 
 sysstus_t hal_syscl_allocator(uint_t sys_nr,void* msgp)
 {
-	return 0; 
+	return 0; //krlservice(sys_nr,msgp);
 }
 // 中断分发器
-void hal_hwint_allocator(uint_t intnumb, void *krnlsframp)
+void hal_hwint_allocator(uint_t intnumb, void *krnlsframp) //eax,edx
 {
     i8259_send_eoi();
     hal_do_hwint(intnumb, krnlsframp);
+    //krlsched_chkneed_pmptsched();
+    //kprint("暂时无法向任何服务进程发送中断消息,直接丢弃......\n");
     return;
 }

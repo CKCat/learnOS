@@ -8,7 +8,8 @@
 #include "bastype_t.h"
 #include "list_t.h"
 #include "spinlock_t.h"
+#include "atomic_t.h"
 #include "sem_t.h"
-
+#include "atomic.h"
 #include "list.h"
 #endif

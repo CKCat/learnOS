@@ -81,7 +81,7 @@ typedef struct s_MACHBSTART
     u64_t   mb_ksepadre;
     u64_t   mb_kservadrs;
     u64_t   mb_kservadre;
-    u64_t   mb_nextwtpadr;    // 内存布局地址
+    u64_t   mb_nextwtpadr;    // 下一个空闲的内存地址
     u64_t   mb_bfontpadr;     // 操作系统字体地址
     u64_t   mb_bfontsz;       // 操作系统字体大小
     u64_t   mb_fvrmphyadr;    // 机器显存地址
@@ -94,9 +94,9 @@ typedef struct s_MACHBSTART
     u64_t   mb_e820expadr;
     u64_t   mb_e820exnr;
     u64_t   mb_e820exsz;
-    u64_t   mb_memznpadr;
-    u64_t   mb_memznnr;
-    u64_t   mb_memznsz;
+    u64_t   mb_memznpadr;     // 内存区的物理地址
+    u64_t   mb_memznnr;       // 内存区的个数
+    u64_t   mb_memznsz;       // 内存区的大小
     u64_t   mb_memznchksum;
     u64_t   mb_memmappadr;
     u64_t   mb_memmapnr;

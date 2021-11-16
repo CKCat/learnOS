@@ -187,5 +187,7 @@ void init_phymmarge()
 void init_halmm()
 {
     init_phymmarge();
+    // hal 层的内存初始化函数
+    init_memmgr();
     return;
 }

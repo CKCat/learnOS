@@ -18,6 +18,7 @@ typedef struct s_ILNEDSC
     u32_t ild_clxsubinr;
 }ilnedsc_t;
 
+// 中断异常描述符
 typedef struct s_INTFLTDSC
 {
     spinlock_t  i_lock;
@@ -27,8 +28,8 @@ typedef struct s_INTFLTDSC
     uint_t      i_irqnr;        //中断号
     uint_t      i_deep;         //中断嵌套深度
     u64_t       i_indx;         //中断计数
-    list_h_t    i_serlist;
-    uint_t      i_sernr;
+    list_h_t    i_serlist;      // 也可以使用中断回调函数的方式
+    uint_t      i_sernr;        // 中断回调函数个数
     list_h_t    i_serthrdlst;   //中断线程链表头
     uint_t      i_serthrdnr;    //中断线程个数
     void*       i_onethread;    //只有一个中断线程时直接用指针

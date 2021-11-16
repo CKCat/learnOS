@@ -16,7 +16,7 @@ void set_idt_desc(u8_t vector, u8_t desc_type, inthandler_t handler, u8_t privil
     gate_t *p_gate = &x64_idt[vector];
     u64_t base = (u64_t)handler;
     p_gate->offset_low = base & 0xFFFF;
-    p_gate->selector = SELECTOR_KERNEL_CS;
+    p_gate->selector = SELECTOR_KERNEL_CS;  // 0x08
     p_gate->dcount = 0;
     p_gate->attr = (u8_t)(desc_type | (privilege << 5));
     p_gate->offset_high = (u16_t)((base >> 16) & 0xFFFF);
@@ -111,9 +111,10 @@ PUBLIC LKINIT void load_x64_tr(u16_t trindx)
         : "memory");
 }
 
+// 设置 64 位 GDT 
 PUBLIC LKINIT void init_descriptor()
 {
-
+    // #define CPUCORE_MAX 1 
     for (u32_t gdtindx = 0; gdtindx < CPUCORE_MAX; gdtindx++)
     {
 

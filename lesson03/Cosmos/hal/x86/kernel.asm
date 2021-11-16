@@ -180,4 +180,5 @@ ALIGN	16
 asm_ret_from_user_mode:
 	RESTOREALL
 
-
+;stack:
+;	times 4096 dd 0

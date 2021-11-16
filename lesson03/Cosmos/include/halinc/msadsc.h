@@ -12,7 +12,26 @@ void write_one_msadsc(msadsc_t* msap,u64_t phyadr);
 LKINIT u64_t init_msadsc_core(machbstart_t* mbsp,msadsc_t* msavstart,u64_t msanr);
 LKINIT void init_msadsc();
 void disp_phymsadsc();
-u64_t search_segment_occupymsadsc(msadsc_t* msastart,u64_t msanr,u64_t ocpystat,u64_t ocpyend);
-bool_t search_krloccupymsadsc_core(machbstart_t* mbsp);
-void init_search_krloccupymm(machbstart_t* mbsp);
+u64_t search_segment_occupymsadsc(msadsc_t *msastart, u64_t msanr, u64_t ocpystat, u64_t ocpyend);
+bool_t search_krloccupymsadsc_core(machbstart_t *mbsp);
+void init_search_krloccupymm(machbstart_t *mbsp);
+
+KLINE adr_t msadsc_ret_addr(msadsc_t *msa)
+{
+        if (NULL == msa)
+        {
+                return NULL;
+        }
+        return (msa->md_phyadrs.paf_padrs << PAGPHYADR_SZLSHBIT);
+}
+
+KLINE adr_t msadsc_ret_vaddr(msadsc_t *msa)
+{
+        if (NULL == msa)
+        {
+                return NULL;
+        }
+        return phyadr_to_viradr(msadsc_ret_addr(msa));
+}
+
 #endif
